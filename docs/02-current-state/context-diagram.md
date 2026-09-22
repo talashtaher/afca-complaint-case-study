@@ -9,28 +9,27 @@ The diagram represents a business-process boundary, not a confirmed AFCA system 
 ## Context diagram
 
 ```mermaid
-flowchart TB
-    C["Complainant"]
-    F["Financial firm or super fund"]
-    O["AFCA operational functions"]
+flowchart LR
+    subgraph EXT["External participants"]
+        direction TB
+        C["Complainant"]
+        F["Financial firm or super fund"]
+    end
+
     P["Complaint-management process boundary"]
-    M["Operational leadership"]
-    S["Technology, reporting, privacy and governance support"]
 
-    C -->|"Complaint details, evidence and responses"| P
-    P -->|"Acknowledgements, requests, status and outcome"| C
+    subgraph INT["Process participants and support"]
+        direction TB
+        O["AFCA operational functions"]
+        M["Operational leadership"]
+        S["Support and control functions"]
+    end
 
-    F -->|"Firm response, evidence and requested information"| P
-    P -->|"Referral, information requests and outcome communication"| F
-
-    O -->|"Assessment, case actions and decisions"| P
-    P -->|"Case record, tasks, alerts and history"| O
-
-    M -->|"Allocation guidance, priorities and oversight"| P
-    P -->|"Demand, workload and exception information"| M
-
-    S -->|"Access, controls, configuration and support"| P
-    P -->|"Audit, reporting and operational data"| S
+    C <-->|"Complaint and updates"| P
+    F <-->|"Referral and response"| P
+    P <-->|"Case work and history"| O
+    P <-->|"Oversight and reporting"| M
+    P <-->|"Controls and support"| S
 ```
 
 ## Information exchanges
